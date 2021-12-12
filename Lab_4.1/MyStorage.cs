@@ -54,10 +54,7 @@ namespace Lab_4._1
         }
         public void ActionObject(int x, int y, Graphics graphics,MouseButtons mouseButtons)
         {
-            for (int i = 0; i < count; i++)
-            {
-                if (CheckAndUpdate(x, y, mouseButtons)) return;
-            }
+            if (CheckAndUpdate(x, y, mouseButtons)) return;
             if (mouseButtons == MouseButtons.Left)
                 setObject(new CCicle(x, y, graphics));
             else
@@ -135,7 +132,7 @@ namespace Lab_4._1
 
     class CCicle : AObject
     {
-        int x,y,r = 10;
+        int x,y,r = 20;
         Graphics graphics;
         Pen pen;
         Brush brush;
@@ -156,7 +153,7 @@ namespace Lab_4._1
         }
         public override bool CheckPos(int x,int y, MouseButtons mouseButtons)
         {
-            if (Math.Sqrt(Math.Pow((this.x - x), 2) + Math.Pow((this.y - y), 2)) <= r*1.5) {
+            if (Math.Sqrt(Math.Pow((this.x - x), 2) + Math.Pow((this.y - y), 2)) < r*1.5) {
                 if (mouseButtons == MouseButtons.Left)
                     selected = true;
                 else
