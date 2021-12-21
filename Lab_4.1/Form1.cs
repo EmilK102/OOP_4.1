@@ -15,13 +15,13 @@ namespace Lab_4._1
             paintBox.Image = _paintBox.GetBitmap();
         }
 
-        private void paintBox_MouseDown(object sender, MouseEventArgs e)
+        private void paintBox_MouseDown(object sender, MouseEventArgs e) //нажатие на холст
         {
             storage.ActionObject(e.X, e.Y, _paintBox.GetGraphics(), e.Button);
             UpdateForm();
         }
 
-        private void UpdateForm()
+        private void UpdateForm() //обновление холста
         {
             _paintBox.ClearBox();
             for (int i = 0; i < storage.getCount(); i++)

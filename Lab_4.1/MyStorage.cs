@@ -4,23 +4,23 @@ using System.Windows.Forms;
 
 namespace Lab_4._1
 {
-    class AObject
+    class AObject //Абстракный класс
     {
-        public virtual bool CheckPos(int x, int y, MouseButtons mouseButtons) {
+        public virtual bool CheckPos(int x, int y, MouseButtons mouseButtons) { //проверка позиции
             return false;
         }
-        public virtual bool GetUsed()
+        public virtual bool GetUsed() //является ли объккт используемый
         {
             return false;
         }
-        public virtual bool GetSelected()
+        public virtual bool GetSelected() //является ли объект текущий
         {
             return false;
         }
-        public virtual void SetSelected() { }
-        public virtual void Draw() { }
+        public virtual void SetSelected() { } //задать что объект текущий
+        public virtual void Draw() { } //отрисовка
     }
-    class MyStorage
+    class MyStorage //Хранилище
     {
         int count;
         AObject[] objects;
@@ -29,11 +29,11 @@ namespace Lab_4._1
             this.count = count;
             objects = new AObject[count];
         }
-        public int getCount()
+        public int getCount() //получение размера массива
         {
             return count;
         }
-        public void setObject(AObject _object)
+        public void setObject(AObject _object) //вставить объект
         {
             for(int i = 0;i < count; i++)
             {
@@ -44,15 +44,15 @@ namespace Lab_4._1
                 }
             }
         }
-        public AObject getObject(int index)
+        public AObject getObject(int index) //получить объект
         {
             return objects[index];
         }
-        public void delObject(int index)
+        public void delObject(int index) //удалить объект
         {
             objects[index] = null;
         }
-        public void ActionObject(int x, int y, Graphics graphics,MouseButtons mouseButtons)
+        public void ActionObject(int x, int y, Graphics graphics,MouseButtons mouseButtons) // действие над объектом
         {
             if (CheckAndUpdate(x, y, mouseButtons)) return;
             if (mouseButtons == MouseButtons.Left)
@@ -62,9 +62,9 @@ namespace Lab_4._1
                 DelUsed();
             }
         }
-        private void DelUsed()
+        private void DelUsed() //удаление выделенных
         {
-            bool flag = false;
+            bool flag = false; //нет используемых объектов
             for (int i = 0; i < count; i++)
             {
                 if (objects[i] == null) continue;
@@ -85,7 +85,7 @@ namespace Lab_4._1
                     flag = true;
                 }
             }
-            if (!flag)
+            if (!flag) //то удаляем текущий
             {
                 for (int i = 0; i < count; i++)
                 {
@@ -106,7 +106,7 @@ namespace Lab_4._1
                 }
             }
         }
-        private bool CheckAndUpdate(int x, int y, MouseButtons mouseButtons)
+        private bool CheckAndUpdate(int x, int y, MouseButtons mouseButtons) //обновление состояния объектов
         {
             bool tmp = false;
             for (int i = 0; i < count; i++)
@@ -120,7 +120,7 @@ namespace Lab_4._1
             }
             return tmp;
         }
-        public bool checkObject(int index)
+        public bool checkObject(int index) //есть ли объект
         {
             if(index >= 0 && index < count)
             {
@@ -130,7 +130,7 @@ namespace Lab_4._1
         }
     }
 
-    class CCicle : AObject
+    class CCicle : AObject //
     {
         int x,y,r = 20;
         Graphics graphics;
@@ -200,7 +200,7 @@ namespace Lab_4._1
         }
     }
 
-    class PaintBox
+    class PaintBox //отрисовка 
     {
         Graphics graphics;
         Bitmap bitmap;
@@ -218,7 +218,7 @@ namespace Lab_4._1
         {
             return bitmap;
         }
-        public void ClearBox()
+        public void ClearBox() //Очищение 
         {
             graphics.Clear(Color.White);
         }
